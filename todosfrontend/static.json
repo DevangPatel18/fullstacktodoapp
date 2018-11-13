@@ -1,0 +1,11 @@
+{
+  "root": "build/",
+  "routes": {
+    "/**": "index.html"
+  },
+  "proxies": {
+    "/api": {
+      "origin": "https://quiet-wave-85998.herokuapp.com/api"
+    }
+  }
+}
