@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/todo-api');
+mongoose.connect(process.env.DATABASE_URI);
 
 mongoose.Promise = Promise;
 
