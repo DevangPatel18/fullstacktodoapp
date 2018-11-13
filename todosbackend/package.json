@@ -9,7 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
     "esm": "^3.0.84",

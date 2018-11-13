@@ -1,8 +1,6 @@
-import express from 'express';
-
+const express = require('express');
 const router = express.Router();
-const db = require('../models');
-import helpers from '../helpers/todos';
+const helpers = require('../helpers/todos');
 
 router
   .route('/')
