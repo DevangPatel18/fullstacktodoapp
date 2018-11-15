@@ -1,8 +1,6 @@
 const db = require('../models');
 
 exports.createUserTodo = async function(req, res, next) {
-  console.log(req.body);
-
   try {
     let todo = await db.Todo.create({
       name: req.body.text,
@@ -21,8 +19,21 @@ exports.createUserTodo = async function(req, res, next) {
   }
 };
 
-// exports.getUserTodo = async function(req, res, next) {};
+exports.getUserTodo = async function(req, res, next) {
+  try {
+    let message = await db.Todo.find(req.params.todo_id);
+    return res.status(200).json(message);
+  } catch (err) {
+    return next(err);
+  }
+};
 
-// exports.deleteUserTodo = async function(req, res, next) {};
-
-module.exports = exports;
+exports.deleteUserTodo = async function(req, res, next) {
+  try {
+    let foundTodo = await db.Todo.findById(req.params.todo_id);
+    await foundTodo.remove();
+    return res.status(200).json(foundTodo);
+  } catch (err) {
+    return next(err);
+  }
+};

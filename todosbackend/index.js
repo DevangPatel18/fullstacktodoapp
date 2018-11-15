@@ -26,7 +26,13 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/todos', todoRoutes);
-app.use('/api/users/:id/todos', loginRequired, ensureCorrectUser, userTodoRoutes);
+app.use(
+  '/api/users/:id/todos',
+  loginRequired,
+  ensureCorrectUser,
+  userTodoRoutes
+);
+const db = require('./models');
 
 app.use((req, res, next) => {
   let err = new Error('Not Found');
