@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  todoList: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Todo',
+    },
+  ],
 });
 
 userSchema.pre('save', async function(next) {

@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 const todoRoutes = require('./routes/todos');
 const authRoutes = require('./routes/auth');
+const userTodoRoutes = require('./routes/userTodos');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/todos', todoRoutes);
+app.use('/api/users/:id/todos', userTodoRoutes);
 
 app.use((req, res, next) => {
   let err = new Error('Not Found');
