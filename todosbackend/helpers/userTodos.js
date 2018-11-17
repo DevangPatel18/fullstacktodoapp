@@ -21,8 +21,8 @@ exports.createUserTodo = async function(req, res, next) {
 
 exports.getUserTodo = async function(req, res, next) {
   try {
-    let message = await db.Todo.find(req.params.todo_id);
-    return res.status(200).json(message);
+    let userTodo = await db.Todo.findById(req.params.id);
+    return res.status(200).json(userTodo);
   } catch (err) {
     return next(err);
   }
@@ -30,7 +30,7 @@ exports.getUserTodo = async function(req, res, next) {
 
 exports.deleteUserTodo = async function(req, res, next) {
   try {
-    let foundTodo = await db.Todo.findById(req.params.todo_id);
+    let foundTodo = await db.Todo.findById(req.params.id);
     await foundTodo.remove();
     return res.status(200).json(foundTodo);
   } catch (err) {

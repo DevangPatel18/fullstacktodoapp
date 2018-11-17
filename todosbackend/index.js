@@ -12,6 +12,7 @@ const port = process.env.PORT || 3000;
 const todoRoutes = require('./routes/todos');
 const authRoutes = require('./routes/auth');
 const userTodoRoutes = require('./routes/userTodos');
+const userTodoListRoutes = require('./routes/userTodoList');
 const { loginRequired, ensureCorrectUser } = require('./middleware/auth');
 
 app.use(cors());
@@ -32,7 +33,13 @@ app.use(
   ensureCorrectUser,
   userTodoRoutes
 );
-const db = require('./models');
+
+app.use(
+  '/api/users/:id/todoList',
+  loginRequired,
+  ensureCorrectUser,
+  userTodoListRoutes
+);
 
 app.use((req, res, next) => {
   let err = new Error('Not Found');
