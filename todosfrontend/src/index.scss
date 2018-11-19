@@ -45,6 +45,25 @@ ul.nav.navbar-nav li {
 }
 
 .onboarding > .navbar {
-  background-image: url('https://res.cloudinary.com/dbeqp2lyo/image/upload/c_scale,w_3800/v1542652966/g-crescoli-468248-unsplash.jpg');
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.home-hero {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  background-image: url('https://pixabay.com/get/e135b0062af51c22d9584518a34d4693e472e4d218ac104491f2c77ca2e5bcba/typewriter-801921_1920.jpg');
   background-size: cover;
+  background-position: center center;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  text-shadow: black 1px 1px 1em;
 }
