@@ -15,14 +15,14 @@ class Navbar extends Component {
               />
             </Link>
           </div>
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <Link to="/signup">Sign up</Link>
-          </li>
-          <li>
-            <Link to="/signin">Log in</Link>
-          </li>
-        </ul>
+          <ul className="nav navbar-nav navbar-right">
+            <li>
+              <Link to="/signup">Sign up</Link>
+            </li>
+            <li>
+              <Link to="/signin">Log in</Link>
+            </li>
+          </ul>
         </div>
       </nav>
     );
@@ -35,7 +35,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(Navbar);
+export default connect(mapStateToProps)(Navbar);
