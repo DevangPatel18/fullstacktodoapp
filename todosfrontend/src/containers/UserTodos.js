@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchTodos } from '../store/actions/userTodos';
+import { fetchTodos, removeTodo } from '../store/actions/userTodos';
 import TodoItem from '../TodoItem';
 
 class UserTodos extends Component {
@@ -9,9 +9,14 @@ class UserTodos extends Component {
     this.props.fetchTodos(currentUser);
   }
   render() {
-    const { userTodo } = this.props;
+    const { userTodo, currentUser } = this.props;
     let userTodoList = userTodo.map(t => (
-      <TodoItem key={t._id} completed={t.completed} name={t.name} />
+      <TodoItem
+        key={t._id}
+        completed={t.completed}
+        name={t.name}
+        onDelete={() => this.props.removeTodo(currentUser, t._id)}
+      />
     ));
     return <ul>{userTodoList}</ul>;
   }
@@ -25,5 +30,5 @@ function mapStateToProps(state) {
 }
 export default connect(
   mapStateToProps,
-  { fetchTodos }
+  { fetchTodos, removeTodo }
 )(UserTodos);

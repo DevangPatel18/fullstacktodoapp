@@ -7,13 +7,25 @@ export const loadUserTodos = todos => ({
   todos,
 });
 
-export const fetchTodos = currentUser => {
-  const { id } = currentUser.user;
+export const removeUserTodo = id => ({
+  type: REMOVE_TODO,
+  id,
+});
+
+export const removeTodo = (currentUser, toDoId) => {
+  const userId = currentUser.user.id;
   return dispatch => {
-    return apiCall('get', `/api/users/${id}/todoList`)
-      .then(function(res) {
-        dispatch(loadUserTodos(res));
-      })
+    return apiCall('delete', `/api/users/${userId}/todos/${toDoId}`)
+      .then(() => dispatch(removeUserTodo(toDoId)))
+      .catch(err => dispatch(addError(err.message)));
+  };
+};
+
+export const fetchTodos = currentUser => {
+  const userId = currentUser.user.id;
+  return dispatch => {
+    return apiCall('get', `/api/users/${userId}/todoList`)
+      .then(res => dispatch(loadUserTodos(res)))
       .catch(err => dispatch(addError(err.message)));
   };
 };
