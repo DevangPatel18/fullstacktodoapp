@@ -5,7 +5,8 @@ import TodoItem from '../TodoItem';
 
 class UserTodos extends Component {
   componentDidMount() {
-    this.props.fetchTodos();
+    const { currentUser } = this.props;
+    this.props.fetchTodos(currentUser);
   }
   render() {
     const { userTodo } = this.props;
@@ -19,6 +20,7 @@ class UserTodos extends Component {
 function mapStateToProps(state) {
   return {
     userTodo: state.userTodo,
+    currentUser: state.currentUser,
   };
 }
 export default connect(

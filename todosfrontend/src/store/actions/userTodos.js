@@ -7,9 +7,10 @@ export const loadUserTodos = todos => ({
   todos,
 });
 
-export const fetchTodos = () => {
+export const fetchTodos = currentUser => {
+  const { id } = currentUser.user;
   return dispatch => {
-    return apiCall('get', '/api/todos')
+    return apiCall('get', `/api/users/${id}/todoList`)
       .then(function(res) {
         dispatch(loadUserTodos(res));
       })
