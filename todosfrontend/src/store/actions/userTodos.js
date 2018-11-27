@@ -22,10 +22,18 @@ export const removeTodo = (currentUser, toDoId) => {
 };
 
 export const fetchTodos = currentUser => {
-  const userId = currentUser.user.id;
+  const userId = currentUser.user.id || currentUser.user._id;
   return dispatch => {
     return apiCall('get', `/api/users/${userId}/todoList`)
       .then(res => dispatch(loadUserTodos(res)))
       .catch(err => dispatch(addError(err.message)));
   };
+};
+
+export const postNewTodo = text => (dispatch, getState) => {
+  let { currentUser } = getState();
+  const userId = currentUser.user.id;
+  return apiCall('post', `/api/users/${userId}/todos`, { text })
+    .then(res => dispatch(fetchTodos(res)))
+    .catch(err => dispatch(addError(err.message)));
 };

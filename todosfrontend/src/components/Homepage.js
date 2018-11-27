@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UserTodoList from './UserTodoList';
+import TodoForm from '../containers/TodoForm';
 
 const Homepage = ({ currentUser }) => {
   if (!currentUser.isAuthenticated) {
@@ -17,6 +18,7 @@ const Homepage = ({ currentUser }) => {
 
   return (
     <div>
+      <TodoForm />
       <UserTodoList />
     </div>
   );
