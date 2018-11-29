@@ -37,3 +37,14 @@ exports.deleteUserTodo = async function(req, res, next) {
     return next(err);
   }
 };
+
+exports.toggleUserTodo = async function(req, res, next) {
+  try {
+    let updateTodo = await db.Todo.findById(req.params.id);
+    updateTodo.completed = !updateTodo.completed;
+    await updateTodo.save();
+    return res.status(200).json(updateTodo);
+  } catch (err) {
+    return next(err);
+  }
+};

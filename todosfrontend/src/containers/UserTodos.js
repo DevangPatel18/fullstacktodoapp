@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchTodos, removeTodo } from '../store/actions/userTodos';
+import { fetchTodos, removeTodo, toggleTodo } from '../store/actions/userTodos';
 import TodoItem from '../TodoItem';
 
 class UserTodos extends Component {
@@ -15,7 +15,8 @@ class UserTodos extends Component {
         key={t._id}
         completed={t.completed}
         name={t.name}
-        onDelete={() => this.props.removeTodo(currentUser, t._id)}
+        onDelete={this.props.removeTodo.bind(this, currentUser, t._id)}
+        onToggle={this.props.toggleTodo.bind(this, currentUser, t._id)}
       />
     ));
     return <ul>{userTodoList}</ul>;
@@ -30,5 +31,5 @@ function mapStateToProps(state) {
 }
 export default connect(
   mapStateToProps,
-  { fetchTodos, removeTodo }
+  { fetchTodos, removeTodo, toggleTodo }
 )(UserTodos);

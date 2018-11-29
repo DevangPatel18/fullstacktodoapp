@@ -37,3 +37,12 @@ export const postNewTodo = text => (dispatch, getState) => {
     .then(res => dispatch(fetchTodos(res)))
     .catch(err => dispatch(addError(err.message)));
 };
+
+export const toggleTodo = (currentUser, toDoId) => {
+  const userId = currentUser.user.id;
+  return dispatch => {
+    return apiCall('put', `/api/users/${userId}/todos/${toDoId}`)
+      .then(res => dispatch(fetchTodos(currentUser)))
+      .catch(err => dispatch(addError(err.message)));
+  };
+};
