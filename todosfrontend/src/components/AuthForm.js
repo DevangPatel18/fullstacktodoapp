@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import errors from '../store/reducers/errors';
+// import errors from '../store/reducers/errors';
 
 class AuthForm extends Component {
   constructor(props) {
