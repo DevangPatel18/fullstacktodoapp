@@ -5,7 +5,7 @@
   },
   "proxies": {
     "/api": {
-      "origin": "https://quiet-wave-85998.herokuapp.com/api"
+      "origin": "https://todoapp-server-dp.herokuapp.com/api"
     }
   }
 }
